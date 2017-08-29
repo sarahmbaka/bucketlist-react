@@ -26,8 +26,9 @@ class NewBucket extends Component {
   };
 
   handleClose = () => {
-    this.setState({_open: false});
+
     this.setState({open: false});
+    this.setState({_open: false});
   };
 
   handleNameChange(event){
@@ -48,7 +49,9 @@ class NewBucket extends Component {
   handleSubmit(event){
 
     event.preventDefault();
-
+    this.setState({
+      open: false
+    });
     if (this.state.name === "" || this.state.description === "") {
 
     }
@@ -86,26 +89,15 @@ class NewBucket extends Component {
    })
   .then((resp) => resp.json()) // Transform the data into json
   .then(function(data) {
-
-      console.log(data);
-      if(data.status === "success"){
-
-
+      if(data.status === "fail"){
           _this.setState({
             error: data.message,
-            _open: true,
-
-
-          })
-
-
-
-
+            _open: true
+          });
       }
       else{
         _this.setState({
           error: data.message,
-          open: false,
           _open: true
         })
       }
@@ -126,6 +118,13 @@ class NewBucket extends Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
+        onClick={this.handleSubmit}
+      />,
+    ];
+    const action = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
         onClick={this.handleClose}
       />,
     ];
@@ -135,7 +134,14 @@ class NewBucket extends Component {
       <a className="logo">
         <span className="symbol"><img src={process.env.PUBLIC_URL + "/images/add.svg"} onClick={this.handleOpen} className="App-logo" alt="Logo " /></span><span className="title"></span>
       </a>
-
+      <Dialog
+        actions={action}
+        modal={false}
+        open={this.state._open}
+        onRequestClose={this.handleClose}
+      >
+        {this.state.error !== "" && this.state.error}
+      </Dialog>
         <Dialog
           title="New Bucketlist"
           actions={actions}
@@ -146,14 +152,7 @@ class NewBucket extends Component {
           <form method="POST" action="">
             <div className="error">
 
-              <Dialog
-                actions={actions}
-                modal={false}
-                open={this.state._open}
-                onRequestClose={this.handleClose}
-              >
-                {this.state.error !== "" && this.state.error}
-              </Dialog>
+
            </div>
             <div>
               <TextField
@@ -168,10 +167,6 @@ class NewBucket extends Component {
                   hintText="Description"
                   onChange={this.handlePassChange} />
             </div>
-            <FlatButton
-                label="ADD"
-                type="submit"
-                onClick={this.handleSubmit} />
           </form>
         </Dialog>
       </div>
