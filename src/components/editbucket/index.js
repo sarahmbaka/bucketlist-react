@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 
 
 /**
@@ -103,7 +103,7 @@ class EditBucket extends Component {
                 item: data.items
               })
 
-              // hashHistory.push("/items");
+              // browserHistory.push("/items");
           }
           else{
             _this.setState({

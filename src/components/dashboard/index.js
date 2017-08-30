@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { hashHistory } from  "react-router";
+import { browserHistory } from  "react-router";
 import Search from 'react-search'
 import BucketlistCard from "../card/BucketListCard";
 import "./search.css";
@@ -37,7 +37,7 @@ class Dashboard extends Component{
   redirectTo(event, bucket_id, bucket_title){
     // event.preventDefault();
     console.log("redirecting")
-    hashHistory.push({
+    browserHistory.push({
                        pathname: "/bucketlists/" + bucket_id,
                        state: { title: bucket_title }
                    });

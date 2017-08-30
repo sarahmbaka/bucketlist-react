@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 
 
 /**
@@ -102,8 +102,6 @@ class EditItem extends Component {
               _this.setState({
                 item: data.items
               })
-
-              // hashHistory.push("/items");
           }
           else{
             _this.setState({

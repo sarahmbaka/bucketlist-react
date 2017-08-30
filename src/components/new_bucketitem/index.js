@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -109,7 +109,7 @@ class NewBucketitem extends Component {
           // store token in the browser localStorage
 
 
-          hashHistory.push("/items");
+          browserHistory.push("/items");
       }
       else{
         _this.setState({

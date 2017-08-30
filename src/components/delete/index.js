@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 
 
 /**
@@ -49,13 +49,11 @@ class DeleteItem extends Component {
   }
   componentDidMount(){
     if(typeof(localStorage) !==  undefined){
-      // store the token
         const token = localStorage.getItem("buckapi_token");
         if (token === null) {
           alert("token not found, please login again");
         }
         else {
-          //console.log("token", token);
           this.setState({
               token: token,
           });
@@ -78,21 +76,17 @@ class DeleteItem extends Component {
        })
       .then((resp) => resp.json()) // Transform the data into json
       .then(function(data) {
-        // Create and append the li's to the ul
         console.log(data);
           if(data.status === "success"){
-            // login was successful
             _this.setState({
               dialog_msg: data.message,
               open: true
             })
-
-              // hashHistory.push("/items");
           }
           else{
             _this.setState({
               error: data.message,
-              // open: true
+              open: true
             })
           }
       }).catch((err) =>{
@@ -120,7 +114,7 @@ class DeleteItem extends Component {
         <span className="symbol"><img src={process.env.PUBLIC_URL + "/images/delete.svg"} onClick={(event) => this.handleOpen(event)}  /></span>
 
         <Dialog
-          title="Edit Bucketlist"
+          title="Delete Bucketlist"
           actions={actions}
           modal={false}
           open={this.state.open}
