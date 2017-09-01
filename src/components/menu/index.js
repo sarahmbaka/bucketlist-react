@@ -28,7 +28,7 @@ class Menu extends Component {
       <div className="inner">
 
 
-        <a className="logo"><img  src={process.env.PUBLIC_URL + "/images/logo.svg"} alt="" onClick={this.handleToggle}/></a>
+        <a className="logo"><img  src={process.env.PUBLIC_URL + "/images/menu.svg"} alt="" onClick={this.handleToggle}/></a>
         <Drawer docked={false} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
           <Link to="/dashboard" activeClassName="active"><MenuItem>Dashboard</MenuItem></Link>
           <Link to="/login" activeClassName="active"><MenuItem>Login</MenuItem></Link>
