@@ -109,11 +109,6 @@ class Login extends Component {
     render(){
       const actions = [
             <FlatButton
-              label="Cancel"
-              primary={true}
-              onTouchTap={this.handleClose}
-            />,
-            <FlatButton
               label="Discard"
               primary={true}
               onTouchTap={this.handleClose}
