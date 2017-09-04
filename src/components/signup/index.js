@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
@@ -87,17 +87,17 @@ class SignUp extends Component{
           // login was successful
             alert(data.message);
             _this.setState({
-              error: ""
+              error: data.message,
+              open: true
             })
-              hashHistory.push("/login");
+              browserHistory.push({ pathname: "/dashboard"});
             // store token in the browser localStorage
 
             if(typeof(localStorage) !==  undefined){
               // store the token
                 localStorage.setItem("buckapi_token", data.auth_token)
             }
-            // redirect to dashboard
-
+            browserHistory.push({ pathname: "/dashboard"});
         }
         else{
           _this.setState({

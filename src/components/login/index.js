@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { hashHistory } from "react-router";
+import { browserHistory } from "react-router";
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
@@ -50,7 +50,7 @@ class Login extends Component {
     redirectTo(event, username){
       //event.preventDefault();
       console.log("redirecting")
-      hashHistory.push({
+      browserHistory.push({
                          pathname: "/dashboard",
                          state: { username: username }
                      });
@@ -76,10 +76,7 @@ class Login extends Component {
        })
       .then((resp) => resp.json()) // Transform the data into json
       .then(function(data) {
-        // Create and append the li's to the ul
-          // _this.setState({
-          //     "response": data
-          // })
+
           console.log(data);
           if(data.status === "success"){
             // login was successful
@@ -111,11 +108,6 @@ class Login extends Component {
 
     render(){
       const actions = [
-            <FlatButton
-              label="Cancel"
-              primary={true}
-              onTouchTap={this.handleClose}
-            />,
             <FlatButton
               label="Discard"
               primary={true}
